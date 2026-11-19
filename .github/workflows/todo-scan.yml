@@ -1,6 +1,7 @@
 name: todo-scan
 
 on:
+  push:
   workflow_dispatch:
 
 jobs:
