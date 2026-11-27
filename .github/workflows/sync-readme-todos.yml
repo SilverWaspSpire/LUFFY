@@ -1,0 +1,20 @@
+name: sync-readme-todos
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - dev
+permissions:
+  contents: write
+jobs:
+  update-todos:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+      - name: Update README TODO list from dev code
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: python3 .github/scripts/sync_todos.py
